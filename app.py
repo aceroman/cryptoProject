@@ -1,15 +1,19 @@
-from dbHandler import storePasswords, retrievePasswords, updatePassword, checkPassword, removeEntry
+from dbHandler import storePasswords, retrievePasswords, updatePassword, checkPassword, removeEntry, setMasterPassword, verifyMasterPassword
 
+
+setMasterPassword()
+
+if not verifyMasterPassword():
+    exit()
 
 def main():
     while True:
         print("\n Welcome to my Secure Password Manager")
         print("1. Store a new password")
         print("2. View current saved passwords")
-        print("3. Verify a stored password")
-        print("4. Update a password")
-        print("5. Remove a password")
-        print("6. Exit the program")
+        print("3. Update a password")
+        print("4. Remove a password")
+        print("5. Exit the program")
         
         
         choice = input("Please select the following: \n")
@@ -36,24 +40,13 @@ def main():
         elif choice == "3":
             website = input("Enter website: \n")
             username = input("Enter the username: \n")
-            inputPassword = input("Enter password to verify: ")
-            
-            if checkPassword(website, username, inputPassword):
-                print("Password Matches!")
-            else:
-                print("Incorrect password or account not found")
-        
-        # Option 4
-        elif choice == "4":
-            website = input("Enter website: \n")
-            username = input("Enter the username: \n")
             newPassword = input("Enter the new password: \n")
             
             updatePassword(website, username, newPassword)
             print("Password updated successfully!")
 
-        # Option 5        
-        elif choice == "5":
+        # Option 4        
+        elif choice == "4":
             website = input("Enter website: \n")
             username = input("Enter the username: \n")
             
@@ -62,8 +55,8 @@ def main():
             else:
                 print("No matching record found. Double check your input.")
             
-        # Option 6
-        elif choice == "6":
+        # Option 5
+        elif choice == "5":
             print("Exiting your password manager!")
             break
         else:
